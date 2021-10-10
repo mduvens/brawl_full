@@ -4,12 +4,7 @@ const port = 3000
 const cors = require('cors')
 const brawlApi = require('brawl-stars-api')
 
-
-app.use(function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-  });
-  
+// app.use();
 
 const PLAYER_TAGS = {
   Manel: '#2GPPL89QY',
@@ -45,7 +40,7 @@ async function getPlayer(tag) {
 
 let players = [];
 
-app.get('/players', async (req, res) => {
+app.get('/players',cors(), async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   if (players.length === 0) {
     players = await getPlayers(Object.values(PLAYER_TAGS))
