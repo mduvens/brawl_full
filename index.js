@@ -4,7 +4,12 @@ const port = 3000
 const cors = require('cors')
 const brawlApi = require('brawl-stars-api')
 
-app.use(cors())
+var corsOptions = {
+  origin: 'http://brawlers.kozow.com',
+  optionsSuccessStatus: 200 // For legacy browser support
+}
+
+app.use(cors(corsOptions))
 
 const PLAYER_TAGS = {
   Manel: '#2GPPL89QY',
@@ -41,6 +46,7 @@ async function getPlayer(tag) {
 let players = [];
 
 app.get('/players', async (req, res) => {
+  res.set('Access-Control-Allow-Origin', 'http://localhost:8080');
   if (players.length === 0) {
     players = await getPlayers(Object.values(PLAYER_TAGS))
   }
