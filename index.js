@@ -57,7 +57,7 @@ async function getPlayer(tag) {
 let players = [];
 
 app.get('/players', async (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'http://localhost:8080');
+  res.set('Access-Control-Allow-Origin', '*');
   if (players.length === 0) {
     players = await getPlayers(Object.values(PLAYER_TAGS))
   }
