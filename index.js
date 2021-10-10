@@ -4,12 +4,23 @@ const port = 3000
 const cors = require('cors')
 const brawlApi = require('brawl-stars-api')
 
-var corsOptions = {
-  origin: 'http://brawlers.kozow.com',
-  optionsSuccessStatus: 200 // For legacy browser support
-}
 
-app.use(cors(corsOptions))
+var allowedOrigins = ['http://176.78.165.210',
+                      'http://brawlers.kozow.com'];
+app.use(cors({  
+  origin: function(origin, callback){
+    // allow requests with no origin     
+    // (like mobile apps or curl requests)    
+    if(!origin) 
+      return callback(null, true);    
+    if(allowedOrigins.indexOf(origin) === -1){
+      var msg = 'The CORS policy for this site does not ' +                
+          'allow access from the specified Origin.';      
+      return callback(new Error(msg), false);    
+    }    
+    return callback(null, true);  
+  }
+}));
 
 const PLAYER_TAGS = {
   Manel: '#2GPPL89QY',
