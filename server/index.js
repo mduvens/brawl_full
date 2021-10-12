@@ -48,15 +48,15 @@ app.get('/api/players', async (req, res) => {
   res.json(players)
 
 })
+ // Static folder
+ app.use(express.static(__dirname + '/public/'))
 
-// Always put this after server routes, so they don't get ignored
-if(process.env.NODE_ENV === 'production'){
-  // Static folder
-  app.use(express.static(__dirname + '/public/'))
-
-  // Handle SPA (Vue Router)
-  app.get(/.*/,(req,res) => res.sendFile(__dirname + '/public/index.html'))
-}
+ // Handle SPA (Vue Router)
+ app.get(/.*/,(req,res) => res.sendFile(__dirname + '/public/index.html'))
+// // Always put this after server routes, so they don't get ignored
+// if(process.env.NODE_ENV === 'production'){
+ 
+// }
 const port = process.env.PORT || 3000
 
 // }
