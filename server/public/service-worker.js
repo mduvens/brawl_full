@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.4d9955bcfb5637498d0ea8b5fbfdc5c8.js"
+  "/precache-manifest.d80d3095be67cd83b1425104663b8b23.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "brawl_client"});
